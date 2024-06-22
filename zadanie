@@ -1,0 +1,45 @@
+from abc import ABC, abstractmethod
+
+class Стихотворение(ABC):
+    def __init__(self, title, author):
+        self.title = title
+        self.author = author
+
+    @abstractmethod
+    def написать(self):
+        pass
+
+class СтильИзложения(Стихотворение):
+    def __init__(self, title, author, style):
+        super().__init__(title, author)
+        self.style = style
+
+    def написать(self):
+        return f"{self.style} стиль: {self.title} ({self.author})"
+
+class Рифма(Стихотворение):
+    def __init__(self, title, author, rhyme_type):
+        super().__init__(title, author)
+        self.rhyme_type = rhyme_type
+
+    def написать(self):
+        return f"Рифма типа {self.rhyme_type}: {self.title} ({self.author})"
+
+class Проза(Стихотворение):
+    def __init__(self, title, author, genre):
+        super().__init__(title, author)
+        self.genre = genre
+
+    def написать(self):
+        return f"Проза жанра {self.genre}: {self.title} ({self.author})"
+   
+# Пример использования классов
+
+стиль_пушкина = СтильИзложения("Евгений Онегин", "Александр Пушкин", "Классицизм")
+print(стиль_пушкина.написать())
+
+рифма_лязга = Рифма("Снегурочка", "Александр Островский", "АВАВ")
+print(рифма_лязга.написать())
+
+проза_толстого = Проза("Война и мир", "Лев Толстой", "Историческая проза")
+print(проза_толстого.написать())
